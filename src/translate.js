@@ -37,7 +37,7 @@ async function translateBatch(client, texts, language, glossary) {
         glossary ? `Glossary: ${glossary}` : '',
         `Return {"translations": [...]} with exactly ${texts.length} strings, in the same order.`,
     ].filter(Boolean).join('\n')
-    for (let attempt = 1; attempt <= 3; attempt++) {
+    for (let attempt = 1; attempt <= 2; attempt++) {
         const response = await client.messages.parse({
             model: MODEL,
             max_tokens: 16000,
@@ -48,7 +48,14 @@ async function translateBatch(client, texts, language, glossary) {
         if (out && out.length === texts.length) return out
         console.warn(`! ${language.code}: got ${out?.length ?? 'no'} strings for ${texts.length}, attempt ${attempt}`)
     }
-    throw new Error(`translation to ${language.code} failed`)
+    // A batch that keeps losing a string is split in two: a smaller array is counted right, and a
+    // single string that still fails is the one to look at, not the whole build.
+    if (texts.length === 1) throw new Error(`translation to ${language.code} failed for: ${texts[0].slice(0, 80)}`)
+    const half = Math.ceil(texts.length / 2)
+    return [
+        ...(await translateBatch(client, texts.slice(0, half), language, glossary)),
+        ...(await translateBatch(client, texts.slice(half), language, glossary)),
+    ]
 }
 
 // strings: the Portuguese texts the list needs. Returns { code: { hash: text } } for every language.
