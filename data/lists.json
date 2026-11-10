@@ -14,8 +14,8 @@
     { "slug": "awesome-nfe", "title": "Awesome NF-e", "description": "Nota fiscal eletrônica para quem integra: portais oficiais, bibliotecas por linguagem, APIs de emissão e servidores MCP.", "live": true },
     { "slug": "awesome-apis-brasil", "title": "Awesome APIs Brasil", "description": "APIs públicas brasileiras: CEP, CNPJ, Banco Central, IBGE, Legislativo, Judiciário, feriados e dados abertos.", "live": true },
     { "slug": "awesome-claude-code-br", "title": "Awesome Claude Code BR", "description": "Claude Code em português: documentação, cursos, skills, regras, plugins e servidores MCP feitos no Brasil.", "live": true },
-    { "slug": "awesome-pagamentos-brasil", "title": "Awesome pagamentos Brasil", "description": "Boleto, cartão, assinatura, split e antifraude, por provedor.", "live": false },
-    { "slug": "awesome-open-finance-brasil", "title": "Awesome Open Finance Brasil", "description": "Open Finance no Brasil: normas, APIs, certificação e bibliotecas.", "live": false },
-    { "slug": "awesome-whatsapp-api", "title": "Awesome WhatsApp API", "description": "WhatsApp para integração: APIs oficiais e não oficiais, bibliotecas e cuidados.", "live": false },
-    { "slug": "awesome-empresa-de-uma-pessoa", "title": "Awesome empresa de uma pessoa", "description": "O que uma pessoa usa para tocar um negócio inteiro com agentes de IA.", "live": false }
+    { "slug": "awesome-pagamentos-brasil", "title": "Awesome pagamentos Brasil", "description": "Pagamentos no Brasil para quem integra: normas, gateways, adquirentes, boleto, assinatura, split e antifraude.", "live": true },
+    { "slug": "awesome-open-finance-brasil", "title": "Awesome Open Finance Brasil", "description": "Open Finance e Open Insurance no Brasil: normas, especificações, dados abertos, agregadores e código aberto.", "live": true },
+    { "slug": "awesome-whatsapp-api", "title": "Awesome WhatsApp API", "description": "WhatsApp para quem integra: a API oficial da Meta, os provedores, as bibliotecas não oficiais e o risco de cada caminho.", "live": true },
+    { "slug": "awesome-empresa-de-uma-pessoa", "title": "Awesome empresa de uma pessoa", "description": "O que uma pessoa usa para tocar um negócio inteiro com agentes de IA: pôr no ar, cobrar, medir, divulgar e ser encontrada.", "live": true }
 ]
