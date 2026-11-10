@@ -1,0 +1,26 @@
+{
+    "contents": "Conteúdo",
+    "legend": "Etiquetas",
+    "languages": "Leia em outras línguas",
+    "tags": {
+        "oficial": "oficial",
+        "codigo-aberto": "código aberto",
+        "gratis": "grátis",
+        "pago": "pago",
+        "api": "API",
+        "sdk": "SDK",
+        "do-autor": "do autor"
+    },
+    "legendText": "Cada item diz o que é. As etiquetas ao lado ajudam a escolher: oficial quando vem de quem define o padrão, código aberto quando o código está publicado, grátis ou pago pelo modelo de uso, API e SDK pelo jeito de integrar. Os itens com a etiqueta \"do autor\" são feitos por Ciro Cesar Maciel e seguem as mesmas regras de todos os outros.",
+    "contribute": "Como contribuir",
+    "contributeText": "Conhece algo que falta, mudou ou saiu do ar? Abra uma issue com o formulário de nova inclusão ou mande um pull request editando data/list.json. O README de cada língua é gerado a partir desse arquivo.",
+    "otherLists": "Outras listas",
+    "otherListsText": "Listas curadas no mesmo formato, em português e em mais 14 línguas.",
+    "madeBy": "Feito por Ciro Cesar Maciel",
+    "madeByText": "Usar o que eu faço também é um jeito de apoiar estas listas.",
+    "license": "Licença",
+    "licenseText": "Esta lista está sob CC0 1.0: copie, adapte e redistribua como quiser, sem pedir permissão. O código do gerador está no awesome-kit, sob MIT.",
+    "updated": "Atualizada em",
+    "items": "itens",
+    "feed": "RSS"
+}

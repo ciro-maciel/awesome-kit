@@ -1,0 +1,56 @@
+name: Lista — READMEs, JSON e RSS
+
+# A cada mudança em data/list.json, o awesome-kit traduz o que é novo, cria os links curtos que
+# faltam e regrava os READMEs das 15 línguas, o JSON aberto e o RSS. O resultado volta para a main
+# num commit do próprio workflow.
+on:
+    push:
+        branches: [main]
+        paths: ['data/**']
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+concurrency:
+    group: publish-list
+    cancel-in-progress: false
+
+jobs:
+    publish:
+        name: Lista — gerar e publicar
+        runs-on: ubuntu-latest
+        environment: release
+        timeout-minutes: 30
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: actions/checkout@v4
+              with:
+                  repository: ciro-maciel/awesome-kit
+                  path: .kit
+
+            - uses: oven-sh/setup-bun@v2
+              with:
+                  bun-version: 1.4.4
+
+            - name: Instalar o kit
+              run: bun install --cwd .kit --frozen-lockfile
+
+            - name: Gerar
+              run: bun .kit/src/build.js .
+              env:
+                  ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+                  LINKS_KEY: ${{ secrets.LINKS_KEY }}
+
+            - name: Guardar o resultado
+              run: |
+                  git config user.name "Ciro Cesar Maciel"
+                  git config user.email "349602+ciro-maciel@users.noreply.github.com"
+                  git add README*.md i18n links.json dist feed
+                  if git diff --cached --quiet; then
+                    echo "nada mudou"
+                  else
+                    git commit -m "chore(list): rebuild the readmes, the json and the feeds [skip ci]"
+                    git push
+                  fi

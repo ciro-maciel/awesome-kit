@@ -1,0 +1,48 @@
+name: Nova inclusão
+description: Sugerir um item para a lista.
+title: "Incluir: "
+labels: ["nova inclusão"]
+body:
+    - type: input
+      id: name
+      attributes:
+          label: Nome
+          description: Como o item se chama.
+      validations:
+          required: true
+    - type: input
+      id: url
+      attributes:
+          label: Endereço
+          description: A página oficial ou o repositório.
+      validations:
+          required: true
+    - type: input
+      id: category
+      attributes:
+          label: Categoria
+          description: Em qual seção da lista ele entra.
+      validations:
+          required: true
+    - type: textarea
+      id: description
+      attributes:
+          label: O que é, em uma frase
+          description: Curta, em português, dizendo o que faz. Sem adjetivo de propaganda.
+      validations:
+          required: true
+    - type: checkboxes
+      id: checks
+      attributes:
+          label: Confirmações
+          options:
+              - label: O item funciona hoje e o endereço abre.
+                required: true
+              - label: Ele ainda não está na lista.
+                required: true
+              - label: Se eu faço parte do projeto, digo isso abaixo.
+                required: false
+    - type: textarea
+      id: relation
+      attributes:
+          label: Relação com o item (se houver)

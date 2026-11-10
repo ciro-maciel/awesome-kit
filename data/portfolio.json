@@ -1,0 +1,16 @@
+[
+    { "name": "Cleaner", "url": "https://ciromaciel.click/tools/cleaner" },
+    { "name": "Screenshots", "url": "https://ciromaciel.click/tools/screenshots" },
+    { "name": "Speech to Text", "url": "https://ciromaciel.click/tools/speech-to-text" },
+    { "name": "Text to Speech", "url": "https://ciromaciel.click/tools/text-to-speech" },
+    { "name": "Windows", "url": "https://ciromaciel.click/tools/windows" },
+    { "name": "Assistant", "url": "https://ciromaciel.click/tools/voice-assistant" },
+    { "name": "CCM Stack", "url": "https://github.com/ciro-maciel/ccm-stack" },
+    { "name": "O Novo Básico", "url": "https://ciromaciel.click/books" },
+    { "name": "Ferramentas grátis", "url": "https://ciromaciel.click/tools" },
+    { "name": "Infrastructure", "url": "https://myinfrastructure.click/" },
+    { "name": "Operations", "url": "https://myoperations.click/" },
+    { "name": "Customers", "url": "https://mycustomers.click/" },
+    { "name": "Marketing", "url": "https://mymarketing.click/" },
+    { "name": "Agents", "url": "https://myagents.click/" }
+]

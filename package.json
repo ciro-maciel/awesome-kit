@@ -1,0 +1,15 @@
+{
+    "name": "awesome-kit",
+    "private": true,
+    "version": "1.0.0",
+    "description": "The generator behind Ciro Cesar Maciel's awesome lists: one Portuguese JSON in, READMEs in 15 languages, JSON and RSS out.",
+    "type": "module",
+    "license": "MIT",
+    "scripts": {
+        "build": "bun src/build.js"
+    },
+    "dependencies": {
+        "@anthropic-ai/sdk": "^1.7.0",
+        "zod": "^4.6.7"
+    }
+}

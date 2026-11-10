@@ -1,0 +1,14 @@
+[
+    { "slug": "awesome-ia-no-trabalho", "title": "Awesome IA no trabalho", "description": "IA no trabalho, por profissão: ferramentas, pedidos prontos e cuidados com dados.", "live": false },
+    { "slug": "awesome-pix", "title": "Awesome Pix", "description": "Pix para quem integra: normas, APIs, SDKs, provedores e ferramentas.", "live": false },
+    { "slug": "awesome-mcp-brasil", "title": "Awesome MCP Brasil", "description": "Servidores MCP para serviços brasileiros: CNPJ, CEP, Pix, governo e marketplaces.", "live": false },
+    { "slug": "awesome-livros-ia", "title": "Awesome livros de IA", "description": "Livros sobre inteligência artificial em português, do primeiro passo à profissão.", "live": false },
+    { "slug": "awesome-ferramentas-online", "title": "Awesome ferramentas online", "description": "Ferramentas grátis que abrem no navegador, sem login.", "live": false },
+    { "slug": "awesome-nfe", "title": "Awesome NF-e", "description": "Nota fiscal eletrônica: NF-e, NFC-e, NFS-e, bibliotecas, APIs e emissores.", "live": false },
+    { "slug": "awesome-apis-brasil", "title": "Awesome APIs Brasil", "description": "APIs públicas brasileiras: CEP, CNPJ, feriados, IBGE, Banco Central e dados abertos.", "live": false },
+    { "slug": "awesome-claude-code-br", "title": "Awesome Claude Code BR", "description": "Skills, hooks, agentes e regras para o Claude Code, em português.", "live": false },
+    { "slug": "awesome-pagamentos-brasil", "title": "Awesome pagamentos Brasil", "description": "Boleto, cartão, assinatura, split e antifraude, por provedor.", "live": false },
+    { "slug": "awesome-open-finance-brasil", "title": "Awesome Open Finance Brasil", "description": "Open Finance no Brasil: normas, APIs, certificação e bibliotecas.", "live": false },
+    { "slug": "awesome-whatsapp-api", "title": "Awesome WhatsApp API", "description": "WhatsApp para integração: APIs oficiais e não oficiais, bibliotecas e cuidados.", "live": false },
+    { "slug": "awesome-empresa-de-uma-pessoa", "title": "Awesome empresa de uma pessoa", "description": "O que uma pessoa usa para tocar um negócio inteiro com agentes de IA.", "live": false }
+]

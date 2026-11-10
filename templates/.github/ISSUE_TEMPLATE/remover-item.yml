@@ -1,0 +1,29 @@
+name: Remover ou corrigir item
+description: Algo saiu do ar, mudou de endereço ou está descrito errado.
+title: "Corrigir: "
+labels: ["correção"]
+body:
+    - type: input
+      id: name
+      attributes:
+          label: Item
+      validations:
+          required: true
+    - type: dropdown
+      id: kind
+      attributes:
+          label: O que aconteceu
+          options:
+              - Saiu do ar
+              - Mudou de endereço
+              - A descrição está errada
+              - Não atende mais ao tema
+      validations:
+          required: true
+    - type: textarea
+      id: evidence
+      attributes:
+          label: Como você conferiu
+          description: Um endereço, uma data ou o que a página diz hoje.
+      validations:
+          required: true
