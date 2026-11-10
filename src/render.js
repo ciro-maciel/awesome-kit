@@ -1,11 +1,11 @@
 // Writes the README of one language from the list data, the translations and the short links.
+import { BADGES_URL } from './badges.js'
 import { LANGUAGES } from './languages.js'
 
 const shield = text => encodeURIComponent(text.replace(/-/g, '--').replace(/_/g, '__'))
 const badge = (label, message, color = '111111') =>
     `https://img.shields.io/badge/${shield(label)}-${shield(message)}-${color}?style=flat-square`
 const single = (text, color, style) => `https://img.shields.io/badge/${shield(text)}-${color}?style=${style}`
-const pill = (text, color) => single(text, color, 'for-the-badge')
 
 // GitHub's heading anchor: lowercase; letters (with their combining marks, as in Hindi), numbers,
 // spaces and hyphens kept; spaces to hyphens.
@@ -32,7 +32,7 @@ export function render({ code, list, ui, t, link, lists, portfolio, updated }) {
     )
 
     out.push(
-        LANGUAGES.map(l => `[![${l.label}](${pill(l.label, l.code === code ? '6b6b6b' : '111111')})](${l.file})`).join(' '),
+        LANGUAGES.map(l => `[![${l.label}](${BADGES_URL}/${l.code}${l.code === code ? '-on' : ''}.svg)](${l.file})`).join(' '),
         '',
     )
 
