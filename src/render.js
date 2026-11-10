@@ -1,11 +1,15 @@
 // Writes the README of one language from the list data, the translations and the short links.
 import { BADGES_URL } from './badges.js'
+import { ICONS } from './icons.js'
 import { LANGUAGES } from './languages.js'
 
 const shield = text => encodeURIComponent(text.replace(/-/g, '--').replace(/_/g, '__'))
-const badge = (label, message, color = '111111') =>
-    `https://img.shields.io/badge/${shield(label)}-${shield(message)}-${color}?style=flat-square`
-const single = (text, color, style) => `https://img.shields.io/badge/${shield(text)}-${color}?style=${style}`
+// A logo is either a Simple Icons slug with its brand color, or one of the kit's colored Tabler icons.
+const logoOf = ({ slug, color, icon } = {}) =>
+    slug ? `&logo=${slug}&logoColor=${color}` : icon ? `&logo=${encodeURIComponent(icon)}` : ''
+const badge = (label, message, color = '111111', logo) =>
+    `https://img.shields.io/badge/${shield(label)}-${shield(message)}-${color}?style=flat-square${logoOf(logo)}`
+const single = (text, color, style, logo) => `https://img.shields.io/badge/${shield(text)}-${color}?style=${style}${logoOf(logo)}`
 
 // GitHub's heading anchor: lowercase; letters (with their combining marks, as in Hindi), numbers,
 // spaces and hyphens kept; spaces to hyphens.
@@ -21,12 +25,12 @@ export function render({ code, list, ui, t, link, lists, portfolio, updated }) {
 
     out.push(
         [
-            `[![Cartas do Ciro](${badge('Cartas do Ciro', tr('assinar'))})](${link('cartas')})`,
-            `[![YouTube](${badge('YouTube', '@ciro-maciel')})](${link('youtube')})`,
-            `[![Instagram](${badge('Instagram', 'ciro.maciel')})](${link('instagram')})`,
+            `[![Cartas do Ciro](${badge('Cartas do Ciro', tr('assinar'), '111111', { icon: ICONS.cartas })})](${link('cartas')})`,
+            `[![YouTube](${badge('YouTube', '@ciro-maciel', '111111', { slug: 'youtube', color: 'FF0000' })})](${link('youtube')})`,
+            `[![Instagram](${badge('Instagram', 'ciro.maciel', '111111', { slug: 'instagram', color: 'E4405F' })})](${link('instagram')})`,
             `[![Awesome](https://awesome.re/badge-flat2.svg)](${link('awesome')})`,
-            `[![${ui.feed}](${badge('RSS', 'feed', '555555')})](feed/${code}.xml)`,
-            `![${count} ${tr(ui.items)}](${badge(tr(ui.items), String(count), '555555')})`,
+            `[![${ui.feed}](${badge('RSS', 'feed', '555555', { slug: 'rss', color: 'FFA500' })})](feed/${code}.xml)`,
+            `![${count} ${tr(ui.items)}](${badge(tr(ui.items), String(count), '555555', { icon: ICONS.items })})`,
         ].join(' '),
         '',
     )
@@ -64,7 +68,7 @@ export function render({ code, list, ui, t, link, lists, portfolio, updated }) {
     out.push('')
 
     out.push(`## ${tr(ui.madeBy)}`, '', tr(ui.madeByText), '')
-    out.push(portfolio.map(p => `[![${p.name}](${single(p.name, '111111', 'flat-square')})](${link(`portfolio:${p.name}`)})`).join(' '), '')
+    out.push(portfolio.map(p => `[![${p.name}](${single(p.name, '111111', 'flat-square', ICONS[p.name] ? { icon: ICONS[p.name] } : undefined)})](${link(`portfolio:${p.name}`)})`).join(' '), '')
 
     out.push(`## ${tr(ui.license)}`, '', tr(ui.licenseText), '')
     out.push(`<sub>${tr(ui.updated)} ${updated}.</sub>`, '')
