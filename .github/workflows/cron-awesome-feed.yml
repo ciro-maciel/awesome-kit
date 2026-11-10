@@ -1,0 +1,37 @@
+name: Listas awesome — RSS de todas
+
+# Joins the Portuguese feed of every live list into feed/all.xml, once a day and whenever the
+# registry changes. Public repository: GitHub-hosted runner, no secret needed.
+on:
+    schedule:
+        - cron: '0 9 * * *'
+    push:
+        branches: [main]
+        paths: [data/lists.json, src/combined-feed.js]
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+concurrency:
+    group: combined-feed
+    cancel-in-progress: false
+
+jobs:
+    feed:
+        name: Juntar os feeds
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: oven-sh/setup-bun@v2
+              with:
+                  bun-version: 1.4.4
+            - run: bun src/combined-feed.js
+            - name: Commit
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+                  git add feed/all.xml
+                  git diff --cached --quiet && exit 0
+                  git commit -m "chore(feed): the combined feed of every list [skip ci]"
+                  git push
