@@ -15,14 +15,25 @@ export const slugify = text =>
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/^-+|-+$/g, '')
 
+// The 30-per-minute limit is per account, shared with every other build and script that creates
+// links at the same time: a 429 waits and tries again (up to five times, longer each time) instead
+// of failing the build.
 async function call(path, init = {}) {
-    const response = await fetch(API + path, {
-        ...init,
-        headers: { authorization: `Bearer ${process.env.LINKS_KEY}`, 'content-type': 'application/json', ...init.headers },
-    })
-    const body = await response.json().catch(() => ({}))
-    if (!response.ok) throw new Error(`Links ${path}: ${response.status} ${body.error?.message ?? ''}`)
-    return body
+    for (let attempt = 1; ; attempt++) {
+        const response = await fetch(API + path, {
+            ...init,
+            headers: { authorization: `Bearer ${process.env.LINKS_KEY}`, 'content-type': 'application/json', ...init.headers },
+        })
+        const body = await response.json().catch(() => ({}))
+        if (response.status === 429 && attempt <= 5) {
+            const wait = Number(response.headers.get('retry-after')) * 1000 || attempt * 15000
+            console.warn(`! Links ${path}: 429, waiting ${wait / 1000}s (attempt ${attempt})`)
+            await new Promise(resolve => setTimeout(resolve, wait))
+            continue
+        }
+        if (!response.ok) throw new Error(`Links ${path}: ${response.status} ${body.error?.message ?? ''}`)
+        return body
+    }
 }
 
 async function freeSlug(base) {

@@ -1,6 +1,7 @@
 // Builds one awesome list: bun src/build.js <list-dir>
 // Reads <list-dir>/data/list.json (Portuguese), translates it, routes every link through Links,
 // and writes the README of each language, dist/<code>.json and feed/<code>.xml.
+import { SUPPORT_TEXT } from './support-text.js'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -17,6 +18,7 @@ const list = read(join(DIR, 'data', 'list.json'))
 const ui = read(join(KIT, 'data', 'ui.json'))
 const lists = read(join(KIT, 'data', 'lists.json'))
 const portfolio = read(join(KIT, 'data', 'portfolio.json'))
+const support = read(join(KIT, 'data', 'support.json'))
 const prefix = list.linkPrefix
 const ref = url => `${url}${url.includes('?') ? '&' : '?'}ref=${list.slug}`
 
@@ -26,6 +28,7 @@ const targets = new Map([
     ['youtube', { destination: 'https://www.youtube.com/@ciro-maciel', slug: `${prefix}-youtube`, piece: 'YouTube' }],
     ['instagram', { destination: 'https://www.instagram.com/ciro.maciel', slug: `${prefix}-instagram`, piece: 'Instagram' }],
     ['awesome', { destination: 'https://awesome.re', slug: `${prefix}-awesome`, piece: 'awesome.re' }],
+    ['apoie', { destination: support.url, slug: `${prefix}-apoie`, piece: 'Apoie (doação)' }],
 ])
 for (const l of lists) {
     targets.set(`list:${l.slug}`, {
@@ -44,7 +47,7 @@ for (const category of list.categories) {
 }
 
 const strings = [
-    list.description, list.intro, 'assinar',
+    list.description, list.intro, 'assinar', 'Apoie', 'um café', SUPPORT_TEXT,
     ...Object.values(ui).flatMap(v => (typeof v === 'string' ? [v] : Object.values(v))),
     ...lists.map(l => l.description),
     ...list.categories.flatMap(c => [c.title, c.description, ...c.items.map(i => i.description)]),

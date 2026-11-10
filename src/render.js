@@ -1,6 +1,7 @@
 // Writes the README of one language from the list data, the translations and the short links.
 import { BADGES_URL } from './badges.js'
 import { ICONS } from './icons.js'
+import { SUPPORT_TEXT } from './support-text.js'
 import { LANGUAGES } from './languages.js'
 
 const shield = text => encodeURIComponent(text.replace(/-/g, '--').replace(/_/g, '__'))
@@ -26,6 +27,7 @@ export function render({ code, list, ui, t, link, lists, portfolio, updated }) {
     out.push(
         [
             `[![Cartas do Ciro](${badge('Cartas do Ciro', tr('assinar'), '111111', { icon: ICONS.cartas })})](${link('cartas')})`,
+            `[![${tr('Apoie')}](${badge(tr('Apoie'), tr('um café'), '111111', { icon: ICONS.apoie })})](${link('apoie')})`,
             `[![YouTube](${badge('YouTube', '@ciro-maciel', '111111', { slug: 'youtube', color: 'FF0000' })})](${link('youtube')})`,
             `[![Instagram](${badge('Instagram', 'ciro.maciel', '111111', { slug: 'instagram', color: 'E4405F' })})](${link('instagram')})`,
             `[![Awesome](https://awesome.re/badge-flat2.svg)](${link('awesome')})`,
@@ -68,6 +70,7 @@ export function render({ code, list, ui, t, link, lists, portfolio, updated }) {
     out.push('')
 
     out.push(`## ${tr(ui.madeBy)}`, '', tr(ui.madeByText), '')
+    out.push(`${tr(SUPPORT_TEXT)} [![${tr('Apoie')}](${badge(tr('Apoie'), tr('um café'), '111111', { icon: ICONS.apoie })})](${link('apoie')})`, '')
     out.push(portfolio.map(p => `[![${p.name}](${single(p.name, '111111', 'flat-square', ICONS[p.name] ? { icon: ICONS[p.name] } : undefined)})](${link(`portfolio:${p.name}`)})`).join(' '), '')
 
     out.push(`## ${tr(ui.license)}`, '', tr(ui.licenseText), '')

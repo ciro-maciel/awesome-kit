@@ -7,6 +7,7 @@ import { join } from 'node:path'
 // name in the badge -> [Tabler icon, color]
 export const ICONS = {
     cartas: ['mail', '#FBBF24'],
+    apoie: ['coffee', '#D97706'],
     items: ['list-check', '#34D399'],
     Cleaner: ['sparkles', '#60A5FA'],
     Screenshots: ['screenshot', '#F472B6'],
