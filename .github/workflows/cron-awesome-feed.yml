@@ -1,13 +1,14 @@
-name: Listas awesome — RSS de todas
+name: Listas awesome — RSS de todas e pacote npm
 
-# Joins the Portuguese feed of every live list into feed/all.xml, once a day and whenever the
-# registry changes. Public repository: GitHub-hosted runner, no secret needed.
+# Joins the Portuguese feed of every live list into feed/all.xml, and publishes every list in every
+# language as @ciromaciel/awesome-lists on npm when something changed, once a day and whenever the
+# registry changes. Public repository: GitHub-hosted runner; the npm token lives in environment release.
 on:
     schedule:
         - cron: '0 9 * * *'
     push:
         branches: [main]
-        paths: [data/lists.json, src/combined-feed.js]
+        paths: [data/lists.json, src/combined-feed.js, src/package.js]
     workflow_dispatch:
 
 permissions:
@@ -35,3 +36,20 @@ jobs:
                   git diff --cached --quiet && exit 0
                   git commit -m "chore(feed): the combined feed of every list [skip ci]"
                   git push
+
+    package:
+        name: Publicar o pacote npm
+        runs-on: ubuntu-latest
+        environment: release
+        steps:
+            - uses: actions/checkout@v4
+            - uses: oven-sh/setup-bun@v2
+              with:
+                  bun-version: 1.4.4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  registry-url: https://registry.npmjs.org
+            - run: bun src/package.js --publish
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
